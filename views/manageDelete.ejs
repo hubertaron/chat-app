@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Törlés kezelése</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Törlés Kezelése</h1>
+    </header>
+
+    <div class="container">
+        <h2>Felhasználók</h2>
+        <ul>
+            <% users.forEach(user => { %>
+                <li>
+                    <%= user.username %> 
+                    <form action="/user/delete/<%= user.id %>" method="POST" class="inline-form">
+                        <button class="button delete" type="submit">Törlés</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>Üzenetek</h2>
+        <ul>
+            <% chats.forEach(chat => { %>
+                <li>
+                    <strong><%= chat.sender.username %></strong> to <strong><%= chat.to.username %>:</strong> <%= chat.content %>
+                    <form action="/chat/delete/<%= chat.id %>" method="POST" class="inline-form">
+                        <button class="button delete" type="submit">Törlés</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <footer>© 2024 Korom és Hubert || MINDEN JOG FENTARTVA </footer>
+</body>
+</html>
