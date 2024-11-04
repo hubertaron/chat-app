@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felhasználó Regisztráció</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Felhasználó Regisztrálása</h1>
+    </header>
+
+    <div class="container">
+        <form action="/register" method="POST" class="form">
+            <label for="username">Felhasználónév:</label>
+            <input type="text" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+
+            <label for="password">Jelszó:</label>
+            <input type="password" name="password" required>
+
+            <label for="birth_date">Születési dátum:</label>
+            <input type="date" name="birth_date" required>
+
+            <button class="button" type="submit">Regisztráció</button>
+        </form>
+    </div>
+    <footer>© 2024 Korom és Hubert || MINDEN JOG FENTARTVA </footer>
+</body>
+</html>

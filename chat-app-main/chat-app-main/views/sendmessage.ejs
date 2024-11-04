@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üzenet Küldése</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Üzenet Küldése</h1>
+    </header>
+
+    <div class="container">
+        <form action="/chat" method="POST" class="form">
+            <label for="sender_id">Küldő:</label>
+            <select name="sender_id" required>
+                <% users.forEach(user => { %>
+                    <option value="<%= user.id %>"><%= user.username %></option>
+                <% }) %>
+            </select>
+
+            <label for="to_id">Címzett:</label>
+            <select name="to_id" required>
+                <% users.forEach(user => { %>
+                    <option value="<%= user.id %>"><%= user.username %></option>
+                <% }) %>
+            </select>
+
+            <label for="content">Üzenet:</label>
+            <textarea name="content" required></textarea>
+
+            <button class="button" type="submit">Küldés</button>
+        </form>
+    </div>
+    <footer>© 2024 Korom és Hubert || MINDEN JOG FENTARTVA </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model chat {
+    id         Int      @id @default(autoincrement())
+    content    String   @db.VarChar(200)
+    created_at DateTime
+
+    sender     user     @relation(name: "sender", fields: [sender_id], references: [id], onDelete: Cascade)
+    sender_id  Int
+    to         user     @relation(name: "receiver", fields: [to_id], references: [id], onDelete: Cascade)
+    to_id      Int
+}
+
+model user {
+    id            Int      @id @default(autoincrement())
+    username      String   @unique
+    password      String
+    email         String   @unique
+    birth_date    DateTime
+    created_at    DateTime
+    updated_at    DateTime
+    isAdmin       Boolean   @default(false) // Új mező az admin státuszhoz
+
+    sent_messages chat[]   @relation("sender")
+    rec_messages  chat[]   @relation("receiver")
+}

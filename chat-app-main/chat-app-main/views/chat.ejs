@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat alkalmazás</title>
+</head>
+<body>
+    <h1>Chat üzenetek</h1>
+    <ul id="messages">
+        <% chats.forEach(function(chat) { %>
+            <li>
+                <strong><%= chat.sender.username %></strong> to <strong><%= chat.to.username %></strong>: 
+                <%= chat.content %>
+                <form action="/chat/delete/<%= chat.id %>" method="POST" style="display:inline;">
+                    <button type="submit">Törlés</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+    <h2>Felhasználók</h2>
+    <ul id="users">
+        <% users.forEach(function(user) { %>
+            <li>
+                <%= user.username %> - <%= user.email %>
+                <form action="/user/delete/<%= user.id %>" method="POST" style="display:inline;">
+                    <button type="submit">Törlés</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+    <h2>Új üzenet</h2>
+    <form action="/chat" method="POST">
+        <input type="text" name="content" placeholder="Írd ide az üzenetet" required>
+        <input type="number" name="sender_id" placeholder="Küldő ID" required>
+        <input type="number" name="to_id" placeholder="Címzett ID" required>
+        <button type="submit">Küldés</button>
+    </form>
+    <a href="/">Vissza a főoldalra</a>
+    <footer>© 2024 Korom és Hubert || MINDEN JOG FENTARTVA </footer>
+</body>
+</html>
